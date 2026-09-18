@@ -1,7 +1,9 @@
---- Description ---
-Use this skill for assembling clean, modular WordPress block templates and template parts through abilities, including overriding theme-provided templates by slug.
+Title: WordPress Templates & Template Parts
+Slug: wordpress-templates
+Description: Use this skill for assembling clean, modular WordPress block templates and template parts through abilities, including overriding theme-provided templates by slug.
+Version: 1.1.0
+===
 
---- Skill Content---
 Block themes ship templates and template parts as read-only theme FILES. You can
 never edit those files — but you do not need to: saving a record with the SAME
 slug through the write abilities creates a database override that WordPress

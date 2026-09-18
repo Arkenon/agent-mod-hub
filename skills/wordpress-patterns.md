@@ -1,7 +1,9 @@
---- Description ---
-Use this skill for creating, duplicating, and updating reusable, responsive WordPress Block Patterns through abilities. Patterns are serialized block markup stored in the database never PHP pattern files.
+Title: WordPress Block Patterns
+Slug: wordpress-patterns
+Description: Use this skill for creating, duplicating, and updating reusable, responsive WordPress Block Patterns through abilities. Patterns are serialized block markup stored in the database never PHP pattern files.
+Version: 1.1.0
+===
 
---- Skill Content---
 Patterns on this site live in the database and are managed exclusively through
 abilities (`agent-mod/list-patterns`, `agent-mod/get-pattern`,
 `agent-mod/create-pattern`, `agent-mod/update-pattern`,

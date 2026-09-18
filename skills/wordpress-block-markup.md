@@ -1,8 +1,8 @@
---- Description ---
-
-Use this skill whenever a request involves writing or editing the content of a post, page, template, template part, or block pattern on this site. All of that content is **serialized WordPress block markup**, and it is written through abilities never by editing theme files or writing PHP.
-
---- Skill Content---
+Title: WordPress Block Markup
+Slug: wordpress-block-markup
+Description: Use this skill whenever a request involves writing or editing the content of a post, page, template, template part, or block pattern on this site. All of that content is serialized WordPress block markup, and it is written through abilities never by editing theme files or writing PHP.
+Version: 1.1.0
+===
 
 ## The abilities you work with (more may be added, always check existing abilities)
 
