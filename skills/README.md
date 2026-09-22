@@ -4,16 +4,28 @@ A Skill file has a `Title:` / `Slug:` / `Description:` / `Version:` header, term
 containing only `===`, followed by the skill's body:
 
 ```markdown
-Title: Skill Title
-Slug: skill-slug
-Description: One-paragraph description shown in the skill tray.
-Version: 1.0.0
+**Title:** Skill Title
+
+**Slug:** skill-slug
+
+**Description:** One-paragraph description shown in the skill tray.
+
+**Version:** 1.0.0
+
 ===
 
 Free-form Markdown body — the text an agent receives as skill content when it
 loads this skill. Code blocks, block markup, and other characters are kept
 exactly as written (nothing here is escaped or re-encoded).
 ```
+
+Wrapping each label in `**` (bold) and separating fields with a blank line is purely
+cosmetic — it renders the header as legible bold key/value pairs instead of one
+run-together paragraph. The parser accepts labels with or without the `**`
+wrapper and is indifferent to blank lines, so plain `Title: Skill Title` on
+consecutive lines (no bold, no blank lines) still parses identically. Pick
+whichever you find easier to read; just keep each field's `Label:` at the
+start of its own line.
 
 - **Title**, **Slug**, **Description**, and **Version** are explicit fields, not derived from the
   body — so a heading inside the content (e.g. `# Mental model`) is never mistaken for the skill's

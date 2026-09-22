@@ -1,7 +1,11 @@
-Title: WordPress Global Styles
-Slug: wordpress-global-styles
-Description: Use this skill to update global styles (theme.json or global style data saved in the database) safely without overwriting existing structure or presets.
-Version: 1.1.0
+**Title:** WordPress Global Styles
+
+**Slug:** wordpress-global-styles
+
+**Description:** Use this skill to update global styles (theme.json or global style data saved in the database) safely without overwriting existing structure or presets.
+
+**Version:** 1.1.0
+
 ===
 
 --------------------------------------------------

@@ -1,7 +1,11 @@
-Title: WordPress Abilities
-Slug: wordpress-abilities
-Description: Rules for registering AI-callable abilities (tools) with the WordPress Abilities API. These rules apply to any plugin exposing abilities — nothing here is specific to a particular plugin.
-Version: 1.1.0
+**Title:** WordPress Abilities
+
+**Slug:** wordpress-abilities
+
+**Description:** Rules for registering AI-callable abilities (tools) with the WordPress Abilities API. These rules apply to any plugin exposing abilities — nothing here is specific to a particular plugin.
+
+**Version:** 1.1.0
+
 ===
 
 ## Where abilities live

@@ -1,7 +1,11 @@
-Title: WordPress Editable HTML Block
-Slug: wordpress-editable-html-block
-Description: Use this skill when generating raw WordPress Custom HTML block (`core/html`) markup by hand — i.e. writing the serialized `<!-- wp:html -->...<!-- /wp:html -->` block markup directly as code output, not by using the block editor UI. The output mixes static, designer-controlled HTML/CSS/JS with a small number of editable inner blocks (mainly Image, Heading, Paragraph) so content can be swapped without touching layout. Requires WordPress 7.1+ / Gutenberg's `innerContent` block support (gutenberg#79115).
-Version: 1.0.1
+**Title:** WordPress Editable HTML Block
+
+**Slug:** wordpress-editable-html-block
+
+**Description:** Use this skill when generating raw WordPress Custom HTML block (`core/html`) markup by hand — i.e. writing the serialized `<!-- wp:html -->...<!-- /wp:html -->` block markup directly as code output, not by using the block editor UI. The output mixes static, designer-controlled HTML/CSS/JS with a small number of editable inner blocks (mainly Image, Heading, Paragraph) so content can be swapped without touching layout. Requires WordPress 7.1+ / Gutenberg's `innerContent` block support (gutenberg#79115).
+
+**Version:** 1.0.1
+
 ===
 
 WordPress 7.1 lets a Custom HTML block interleave static HTML with regular,

@@ -1,7 +1,11 @@
-Title: WordPress Templates & Template Parts
-Slug: wordpress-templates
-Description: Use this skill for assembling clean, modular WordPress block templates and template parts through abilities, including overriding theme-provided templates by slug.
-Version: 1.1.0
+**Title:** WordPress Templates & Template Parts
+
+**Slug:** wordpress-templates
+
+**Description:** Use this skill for assembling clean, modular WordPress block templates and template parts through abilities, including overriding theme-provided templates by slug.
+
+**Version:** 1.1.0
+
 ===
 
 Block themes ship templates and template parts as read-only theme FILES. You can

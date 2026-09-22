@@ -4,24 +4,45 @@ An Agent file has an explicit header of `Field: value` lines, terminated by a li
 `===`, followed by the agent's full System Prompt:
 
 ```markdown
-Title: Agent Title
-Slug: agent-slug
-Icon: art
-Description: One paragraph shown in the agent tray.
-Role: Who the agent is and how it should behave.
-Goal: What a successful outcome looks like for this agent.
-Version: 1.0.0
-Model: use_default
-Ability Source: selected
-Abilities: core/get-site-info, agent-mod/get-global-styles, agent-mod/validate-block-markup
-Skills: wordpress-templates, wordpress-patterns
-Agent Types: theme-design
-Personalities: meticulous, technical
+**Title:** Agent Title
+
+**Slug:** agent-slug
+
+**Icon:** art
+
+**Description:** One paragraph shown in the agent tray.
+
+**Role:** Who the agent is and how it should behave.
+
+**Goal:** What a successful outcome looks like for this agent.
+
+**Version:** 1.0.0
+
+**Model:** use_default
+
+**Ability Source:** selected
+
+**Abilities:** core/get-site-info, agent-mod/get-global-styles, agent-mod/validate-block-markup
+
+**Skills:** wordpress-templates, wordpress-patterns
+
+**Agent Types:** theme-design
+
+**Personalities:** meticulous, technical
+
 ===
 
 The full system prompt the agent runs with. Can be as long and as
 structured (headings, lists, code blocks) as needed.
 ```
+
+Wrapping each label in `**` (bold) and separating fields with a blank line is purely
+cosmetic — it renders the header as legible bold key/value pairs instead of one
+run-together paragraph. The parser accepts labels with or without the `**`
+wrapper and is indifferent to blank lines, so plain `Title: Agent Title` on
+consecutive lines (no bold, no blank lines) still parses identically. Pick
+whichever you find easier to read; just keep each field's `Label:` at the
+start of its own line.
 
 - **Title**, **Slug**, **Icon**, **Description**, **Role**, **Goal**, and **Version** map directly
   to the matching agent field. Fields can appear in any order — each one's value stops at the next
