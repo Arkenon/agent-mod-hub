@@ -4,9 +4,13 @@
 
 **Description:** Use this skill whenever a request asks for a new Gutenberg block to be built in PHP only — no JavaScript, no build step, no `block.json`/`registerBlockType()` — for a simple, server-rendered, non-interactive block. Covers the `autoRegister` support flag added to `register_block_type()`, its attribute rules, auto-generated Inspector Controls, and its hard limitations versus a normal JS-registered block.
 
-**Version:** 1.0.0
+**Version:** 1.1.0
 
 ===
+
+## Writing code: use Code Snippets
+
+You run inside WordPress, not in an IDE or terminal — you cannot edit theme or plugin files. Whenever this skill calls for code (PHP, JavaScript or CSS), deliver it as a Code Snippet using the `agent-mod-pro` abilities: `get-snippets` / `get-snippet` to look for an existing one first, `validate-snippet` to check the code, `add-snippet` to create it and `update-snippet` to change it (plus `set-snippet-status`, `remove-snippet` and the code-reading abilities when needed). Prefer updating an existing snippet over creating a duplicate. A new snippet is a reviewable draft: tell the user it takes effect only once it is activated. Explain what the code must do, then create the snippet — don't paste code into chat and ask the user to place it somewhere.
 
 ## What this is
 

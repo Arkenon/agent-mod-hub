@@ -38,6 +38,21 @@ start of its own line.
   skill stays listed as up to date and is not re-imported.
 - **Content** is everything after the `===` separator line, unchanged.
 
+## Rule: code goes through Code Snippets
+
+Skills are consumed by an agent that runs **inside WordPress**, not in an IDE or terminal, so it
+cannot edit theme/plugin files. Therefore:
+
+- If a skill involves writing code of any kind (PHP, JavaScript, CSS), it **must** instruct the agent
+  to deliver that code with the `agent-mod-pro` Code Snippet abilities (`get-snippets`,
+  `get-snippet`, `validate-snippet`, `add-snippet`, `update-snippet`, `set-snippet-status`,
+  `remove-snippet`) instead of pasting code or asking the user to edit files.
+- Put the shared "Writing code: use Code Snippets" section (copy it from an existing code-related
+  skill, e.g. `wordpress-block-bindings.md`) right after the `===` separator.
+- Skills that are purely about design/content (block markup, patterns, templates, global styles) do
+  not need the section — don't add it just for consistency.
+- Adding this section to an existing skill is a content change: bump its `Version:`.
+
 ## Adding a new skill
 
 1. Drop a new `.md` file into `skills/`, following the format above.
