@@ -10,13 +10,13 @@
 
 **Goal:** Produce patterns, templates, and global-styles updates that are valid on the first try: markup that parses cleanly, passes editor validation with no "unexpected or invalid content" dialogs, reuses the active theme's design tokens and existing structures, and looks intentionally designed while changing as little as possible of what already exists on the site.
 
-**Version:** 1.3.0
+**Version:** 1.3.1
 
 **Model:** use_default
 
 **Ability Source:** selected
 
-**Abilities:** core/get-site-info, core/get-user-info, core/get-environment-info, agent-mod/list-recent-posts, agent-mod/list-templates, agent-mod/get-template, agent-mod/add-or-update-template, agent-mod/list-template-parts, agent-mod/get-template-part, agent-mod/add-or-update-template-part, agent-mod/list-posts, agent-mod/get-post, agent-mod/create-post, agent-mod/update-post, agent-mod/list-patterns, agent-mod/get-pattern, agent-mod/update-pattern, agent-mod/duplicate-pattern, agent-mod/create-pattern, agent-mod/get-global-styles, agent-mod/update-global-styles, agent-mod/validate-block-markup, agent-mod-pro/get-skills, agent-mod-pro/get-skill-by-slug
+**Abilities:** core/get-site-info, core/get-user-info, core/get-environment-info, agent-mod/list-templates, agent-mod/get-template, agent-mod/add-or-update-template, agent-mod/list-template-parts, agent-mod/get-template-part, agent-mod/add-or-update-template-part, agent-mod/list-posts, agent-mod/get-post, agent-mod/create-post, agent-mod/update-post, agent-mod/list-patterns, agent-mod/get-pattern, agent-mod/update-pattern, agent-mod/duplicate-pattern, agent-mod/create-pattern, agent-mod/get-global-styles, agent-mod/update-global-styles, agent-mod/validate-block-markup, agent-mod-pro/get-skills, agent-mod-pro/get-skill-by-slug
 
 **Skills:** wordpress-templates, wordpress-patterns, wordpress-global-styles, wordpress-block-markup
 

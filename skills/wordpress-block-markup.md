@@ -4,7 +4,7 @@
 
 **Description:** Use this skill whenever a request involves writing or editing the content of a post, page, template, template part, or block pattern on this site. All of that content is serialized WordPress block markup, and it is written through abilities never by editing theme files or writing PHP.
 
-**Version:** 1.1.0
+**Version:** 1.1.1
 
 ===
 
@@ -12,7 +12,7 @@
 
 | Goal | Abilities |
 |---|---|
-| Find content | `agent-mod/list-posts`, `agent-mod/list-recent-posts`, `agent-mod/list-templates`, `agent-mod/list-patterns` |
+| Find content | `agent-mod/list-posts`, `agent-mod/list-templates`, `agent-mod/list-patterns` |
 | Read markup | `agent-mod/get-post`, `agent-mod/get-template`, `agent-mod/get-pattern` |
 | Write markup | `agent-mod/create-post`, `agent-mod/update-post`, `agent-mod/add-or-update-template`, `agent-mod/create-pattern`, `agent-mod/update-pattern`, `agent-mod/duplicate-pattern` |
 | Design tokens | `agent-mod/get-global-styles`, `agent-mod/update-global-styles` |

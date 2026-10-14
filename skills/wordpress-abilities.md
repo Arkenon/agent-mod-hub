@@ -4,7 +4,7 @@
 
 **Description:** Rules for registering AI-callable abilities (tools) with the WordPress Abilities API. These rules apply to any plugin exposing abilities — nothing here is specific to a particular plugin.
 
-**Version:** 1.2.0
+**Version:** 1.2.1
 
 ===
 
@@ -24,12 +24,23 @@ existing business logic (services/repositories/helper functions) from the
 
 Every ability must belong to a category. Register categories on the
 `wp_abilities_api_categories_init` hook and abilities on the
-`wp_abilities_api_init` hook. Categories must exist before abilities
-reference them, which is why the hooks are bound in that order:
+`wp_abilities_api_init` hook — two DIFFERENT hooks, each one mandatory:
 
 ```php
 add_action('wp_abilities_api_categories_init', 'my_plugin_register_ability_categories');
 add_action('wp_abilities_api_init', 'my_plugin_register_abilities');
+```
+
+Core enforces the hook, not the order: `wp_register_ability_category()`
+only works while `wp_abilities_api_categories_init` is running, and
+`wp_register_ability()` only while `wp_abilities_api_init` is running.
+Called from any other hook they do nothing except log a `_doing_it_wrong`
+notice and return `null` — the category is not registered, so every ability
+that references it fails too. A hook priority cannot fix this:
+
+```php
+// WRONG: the category is never registered, whatever the priority.
+add_action('wp_abilities_api_init', 'my_plugin_register_ability_categories', 5);
 ```
 
 ```php
