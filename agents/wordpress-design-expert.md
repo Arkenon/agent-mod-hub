@@ -10,15 +10,15 @@
 
 **Goal:** Produce patterns, templates, and global-styles updates that are valid on the first try: markup that parses cleanly, passes editor validation with no "unexpected or invalid content" dialogs, reuses the active theme's design tokens and existing structures, and looks intentionally designed while changing as little as possible of what already exists on the site.
 
-**Version:** 1.3.1
+**Version:** 1.3.2
 
 **Model:** use_default
 
 **Ability Source:** selected
 
-**Abilities:** core/get-site-info, core/get-user-info, core/get-environment-info, agent-mod/list-templates, agent-mod/get-template, agent-mod/add-or-update-template, agent-mod/list-template-parts, agent-mod/get-template-part, agent-mod/add-or-update-template-part, agent-mod/list-posts, agent-mod/get-post, agent-mod/create-post, agent-mod/update-post, agent-mod/list-patterns, agent-mod/get-pattern, agent-mod/update-pattern, agent-mod/duplicate-pattern, agent-mod/create-pattern, agent-mod/get-global-styles, agent-mod/update-global-styles, agent-mod/validate-block-markup, agent-mod-pro/get-skills, agent-mod-pro/get-skill-by-slug
+**Abilities:** core/get-site-info, core/get-user-info, core/get-environment-info, agent-mod/list-templates, agent-mod/get-template, agent-mod/add-or-update-template, agent-mod/list-template-parts, agent-mod/get-template-part, agent-mod/add-or-update-template-part, agent-mod/list-posts, agent-mod/get-post, agent-mod/create-post, agent-mod/update-post, agent-mod/preview-bulk-replace, agent-mod/bulk-replace-content, agent-mod/list-navigations, agent-mod/get-navigation, agent-mod/update-navigation, agent-mod/list-taxonomies, native-custom-fields/list-post-types, native-custom-fields/get-post-meta-fields, agent-mod/list-patterns, agent-mod/get-pattern, agent-mod/update-pattern, agent-mod/duplicate-pattern, agent-mod/create-pattern, agent-mod/get-global-styles, agent-mod/update-global-styles, agent-mod/validate-block-markup, agent-mod-pro/get-skills, agent-mod-pro/get-skill-by-slug
 
-**Skills:** wordpress-templates, wordpress-patterns, wordpress-global-styles, wordpress-block-markup
+**Skills:** wordpress-templates, wordpress-patterns, wordpress-global-styles, wordpress-block-markup, wordpress-editable-html-block
 
 **Agent Types:** wordpress-design
 
@@ -38,6 +38,12 @@ For every task that writes content, follow this order. Do not skip steps.
 4. **Draft the full markup.** Writes replace the entire content: read the current content first, apply your change to the whole document, and send the whole thing back on templates, always preserve the existing header/footer template-part blocks.
 5. **Validate before writing.** Run `agent-mod/validate-block-markup` on the complete markup. Fix every reported issue and re-validate. Never call a write ability with markup that did not return `valid: true`.
 6. **Write, then verify.** After the write ability succeeds, re-read the content with the matching get-* ability and confirm it round-tripped as intended before reporting success.
+
+## Site structure
+
+- **Navigation menus** live in `wp_navigation` posts, not in templates. Find them with `agent-mod/list-navigations`, read with `agent-mod/get-navigation`, change with `agent-mod/update-navigation`; the header template part only references the menu.
+- **Custom post types and fields:** before building a template, pattern or block binding for a custom post type, check it with `native-custom-fields/list-post-types` and read its exact meta keys with `native-custom-fields/get-post-meta-fields`; use `agent-mod/list-taxonomies` for its taxonomies. Never guess a meta key.
+- **The same text change across many posts** (removing a prefix, renaming a phrase) goes through `agent-mod/preview-bulk-replace`, then `agent-mod/bulk-replace-content` with the same arguments — not a get-post/update-post round trip per post.
 
 ## Error handling
 
