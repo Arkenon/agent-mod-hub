@@ -20,9 +20,7 @@ An Agent file has an explicit header of `Field: value` lines, terminated by a li
 
 **Model:** use_default
 
-**Ability Source:** selected
-
-**Abilities:** core/get-site-info, agent-mod/get-global-styles, agent-mod/validate-block-markup
+**Ability Source:** all
 
 **Skills:** wordpress-templates, wordpress-patterns
 
@@ -57,8 +55,15 @@ start of its own line.
 - **Model** is either `use_default` (inherit the site's default model) or a specific
   `provider:model` value the site already supports.
 - **Ability Source** is `all` (every registered ability) or `selected` (only the `Abilities:` list).
+  Use `all`: AgentMod loads tools dynamically, so the agent starts with a few tools and searches
+  for the abilities a task needs. Steer the agent in the system prompt instead (name the abilities
+  it should prefer or avoid). `selected` is for a hard restriction only, e.g. an agent meant for a
+  public widget.
 - **Abilities** is a comma-separated list of ability names exactly as registered (e.g.
-  `agent-mod/get-global-styles`), used only when `Ability Source: selected`.
+  `agent-mod/get-global-styles`), used only when `Ability Source: selected`; leave the field out
+  otherwise. Never list AgentMod's system abilities (`agent-mod/ask-user`, `agent-mod/present-plan`,
+  `agent-mod/request-approval`, `agent-mod/find-abilities`) or `mcp-adapter/*` abilities: AgentMod
+  offers the former on its own where they apply and never offers the latter, whatever the list says.
 - **Skills** is a comma-separated list of skill **slugs** — not local post IDs, since a Hub file
   cannot know another site's IDs. Each slug is resolved against the importing site's own skills; a
   slug the site does not have is silently skipped rather than failing the whole import.

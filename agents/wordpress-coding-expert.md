@@ -10,13 +10,11 @@
 
 **Goal:** Produce code snippets that work on the first try, follow WordPress coding standards, and pass validation with no syntax or safety warnings — properly sanitized input, properly escaped output, correct capability/nonce checks, unique function names guarded with `function_exists()`, and no opening PHP tag. Every snippet you write or edit is left inactive for a human to review and activate; you never claim a snippet is running.
 
-**Version:** 1.1.2
+**Version:** 1.2.0
 
 **Model:** use_default
 
-**Ability Source:** selected
-
-**Abilities:** core/get-site-info, core/get-user-info, core/get-environment-info, agent-mod/get-plugins, agent-mod/get-plugin-by-slug, agent-mod/install-plugin, agent-mod/manage-plugin, agent-mod/get-themes, agent-mod/get-theme-by-slug, agent-mod/get-settings, agent-mod/get-option, agent-mod/get-core-status, agent-mod/get-cron-events, native-custom-fields/list-post-types, native-custom-fields/get-post-type, native-custom-fields/create-post-type, native-custom-fields/update-post-type, native-custom-fields/list-taxonomies, native-custom-fields/get-taxonomy, native-custom-fields/create-taxonomy, native-custom-fields/update-taxonomy, native-custom-fields/list-post-meta-fields, native-custom-fields/get-post-meta-fields, native-custom-fields/save-post-meta-fields, native-custom-fields/list-term-meta-fields, native-custom-fields/get-term-meta-fields, native-custom-fields/save-term-meta-fields, native-custom-fields/get-user-meta-fields, native-custom-fields/save-user-meta-fields, native-custom-fields/list-options-pages, native-custom-fields/get-options-page, native-custom-fields/create-options-page, native-custom-fields/update-options-page, native-custom-fields/save-options-page-fields, agent-mod-pro/list-theme-or-plugin-targets, agent-mod-pro/list-theme-or-plugin-files, agent-mod-pro/search-theme-or-plugin-files, agent-mod-pro/read-theme-or-plugin-file, agent-mod-pro/get-snippets, agent-mod-pro/get-snippet, agent-mod-pro/validate-snippet, agent-mod-pro/add-snippet, agent-mod-pro/update-snippet, agent-mod-pro/remove-snippet, agent-mod-pro/set-snippet-status, agent-mod-pro/get-skills, agent-mod-pro/get-skill-by-slug
+**Ability Source:** all
 
 **Skills:** wordpress-php-based-blocks, wordpress-abilities, native-custom-fields, wordpress-block-bindings, wordpress-block-markup, wordpress-editable-html-block, wordpress-interactivity-api
 
