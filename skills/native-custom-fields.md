@@ -2,9 +2,9 @@
 
 **Slug:** native-custom-fields
 
-**Description:** How to read and write the values of fields created with the Native Custom Fields (NCF) plugin from code — meta keys, the value shape of every field type, and a ready-made pattern for create / update / delete abilities of an NCF post type that reads the field list at runtime instead of hard-coding it.
+**Description:** How to read and write the values of fields created with the Native Custom Fields (NCF) plugin from code — meta keys, the value shape of every field type, a ready-made pattern for create / update / delete abilities of an NCF post type that reads the field list at runtime instead of hard-coding it, and how to show NCF field values in blocks with the `native-custom-fields/post-meta` block binding source.
 
-**Version:** 1.0.0
+**Version:** 1.1.2
 
 ===
 
@@ -15,6 +15,8 @@ You run inside WordPress, not in an IDE or terminal — you cannot edit theme or
 ## When to use this skill
 
 Use it whenever code has to read or write data of a post type, taxonomy, user or options page whose fields were built with Native Custom Fields — for example "write create / update / delete abilities for the Service Provider post type". Combine it with the `wordpress-abilities` skill for the ability registration rules.
+
+Use it also whenever a block in content, a pattern or a template should display the value of an NCF field — for example "show the phone number field in this paragraph". See "Showing field values in blocks: block bindings" below, and combine it with the `wordpress-block-bindings` and `wordpress-block-markup` skills.
 
 ## Do not research NCF again — everything you need is here
 
@@ -50,7 +52,7 @@ Do **not** hard-code the field list, types or options into the code you write. R
 | `group` | object | `{"sub_name": value, …}` — one object keyed by sub-field name |
 | `repeater` | array | `[{"sub_name": value, …}, …]` — a list of row objects |
 | `file_upload`, `media_library` | array | `[{"file_name": "photo.jpg", "file_to_upload": "https://…/photo.jpg", "file_size": "120.4 KB"}]` — always a list, even for one file; `file_to_upload` holds the URL |
-| `notice`, `heading`, `text_highlight`, `section` | — | display only, no stored value: skip them |
+| `notice`, `heading`, `text_highlight`, `section`, `external_link`, `meta_box` | — | display only, no stored value: skip them |
 
 - Sub-field values inside `group` / `repeater` follow the same table, recursively. The builder abilities create at most two nesting levels.
 - `select` / `radio` / `combobox` / `toggle_group` options are configured as `"Label:value, Label 2:value2"`. The **value** part is stored, not the label.
@@ -270,6 +272,47 @@ if ( ! function_exists( 'my_site_register_service_provider_abilities' ) ) {
 
 Write the update and delete abilities out in full in the snippet. The comments above only list what they must do.
 
+## Showing field values in blocks: block bindings
+
+NCF registers its own block binding source automatically: **`native-custom-fields/post-meta`**. When the custom fields of a post type were built with NCF, bind blocks to them with this source. No code and no Code Snippet is needed — you only write block markup.
+
+The binding goes into the block's `metadata.bindings` attribute: the key is the bound block **attribute** (`content` for a paragraph), `source` is `native-custom-fields/post-meta`, and `args.key` is the field's `name` (its meta key):
+
+```json
+{"metadata":{"bindings":{"content":{"source":"native-custom-fields/post-meta","args":{"key":"hh_phone_number"}}}}}
+```
+
+This object is placed **inside the block comment delimiter**, as the block's attributes JSON. A paragraph bound to the `hh_phone_number` field:
+
+```html
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"native-custom-fields/post-meta","args":{"key":"hh_phone_number"}}}}} -->
+<p></p>
+<!-- /wp:paragraph -->
+```
+
+Other blocks follow the same pattern, binding their own attributes:
+
+```html
+<!-- wp:heading {"level":3,"metadata":{"bindings":{"content":{"source":"native-custom-fields/post-meta","args":{"key":"hh_company_name"}}}}} -->
+<h3 class="wp-block-heading"></h3>
+<!-- /wp:heading -->
+
+<!-- wp:button {"metadata":{"bindings":{"url":{"source":"native-custom-fields/post-meta","args":{"key":"hh_website"}}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Visit website</a></div>
+<!-- /wp:button -->
+```
+
+Rules:
+
+1. **Use the exact field `name` as `args.key`.** Read it with `native-custom-fields/get-post-meta-fields`; never guess or translate a meta key. The key is case-sensitive.
+2. **Use `native-custom-fields/post-meta` for NCF fields**, not `core/post-meta`. The NCF source is already registered, so you do not need a snippet that registers the meta or exposes it to REST.
+3. **Merge into the existing attributes, do not add a second `metadata`.** If the block already has attributes (`"level":3`, `"className"`, `"style"`, `"metadata":{"name":…}`), put `bindings` inside that same `metadata` object. A JSON object with a duplicate key loses one of them.
+4. **Only bindable block attributes work** — paragraph / heading `content`, button `url` / `text` / `linkTarget` / `rel`, image `id` / `url` / `title` / `alt` / `caption` and the others listed in `wordpress-block-bindings`. Binding any other block or attribute silently does nothing.
+5. **Bind only fields with a single text-like value**: `text`, `textarea`, `input`, single `select`, `radio`, `combobox`, date / time / color pickers, `number`, `range` and similar (see the value table above). `group`, `repeater`, multiple `select`, `token_field`, `toggle` / `checkbox` and the `file_upload` / `media_library` list cannot be bound to a text or URL attribute directly. Tell the user, and offer a PHP-rendered alternative through a Code Snippet (see `wordpress-block-bindings` → custom source) instead of writing a binding that renders empty or wrong.
+6. **Keep valid inner HTML** for the block (`<p></p>`, `<h3 class="wp-block-heading"></h3>`, the button `<div><a>` wrapper). The bound value replaces the attribute on render; inner text you write there is only a fallback / editor placeholder.
+7. **It needs a post context.** The value is read from the current post: a single post / page of that post type, its single template, or a Query Loop → Post Template that queries that post type. In a template with no post context there is nothing to read.
+8. **Valid JSON, single line.** Double quotes everywhere, no trailing commas, the whole attributes object on the block comment line. Validate the markup before saving it.
+
 ## Checklist
 
 1. Read the configuration once (`native-custom-fields/get-post-meta-fields`) and write the field table into your reply.
@@ -278,3 +321,4 @@ Write the update and delete abilities out in full in the snippet. The comments a
 4. Sanitize with NCF's `Helper::sanitizeFieldValue()`, validate against the registered schema, reject unknown keys, and `wp_slash()` before saving.
 5. Follow `wordpress-abilities` for annotations, permissions, `output_schema` and `error` / `success` results.
 6. Validate the snippet with `validate-snippet`, save it inactive, and tell the user to activate it.
+7. To display an NCF field in a block, write a `native-custom-fields/post-meta` binding with `args.key` = the exact field name inside the block's `metadata.bindings` — no snippet needed.

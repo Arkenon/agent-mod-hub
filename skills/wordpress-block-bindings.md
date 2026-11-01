@@ -4,7 +4,7 @@
 
 **Description:** Use this skill whenever content or templates should show dynamic data (post meta, post date/link, term data, pattern overrides, or a custom data source) instead of static text — by writing `metadata.bindings` into block markup. Covers which blocks/attributes can be bound, the exact markup for every built-in source, how to expose post meta, and when a PHP Code Snippet is required for a custom source or value formatting.
 
-**Version:** 1.1.0
+**Version:** 1.1.2
 
 ===
 
@@ -83,6 +83,14 @@ Image with several attributes bound:
 ```
 
 **The meta must be exposed first.** The binding only works if the post meta is registered with `show_in_rest => true` and `single => true`, and the key must **not** start with an underscore (protected keys are inaccessible). Registration is PHP → **Code Snippet** (see below). Before writing a `core/post-meta` binding, check whether the meta key is already registered (by the theme, a plugin like ACF/Meta Box exposing it to REST, or an earlier snippet). If it isn't, say the binding will render empty until a registration snippet exists, and offer to create it.
+
+**Fields built with Native Custom Fields (NCF):** NCF registers its own source, `native-custom-fields/post-meta`, with the same args (`{"key": "field_name"}`). For NCF fields use that source instead of `core/post-meta` — no registration snippet is needed. Read the exact field name with `native-custom-fields/get-post-meta-fields`:
+
+```html
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"native-custom-fields/post-meta","args":{"key":"hh_phone_number"}}}}} -->
+<p></p>
+<!-- /wp:paragraph -->
+```
 
 Context: `core/post-meta` reads the meta of the **current post** (post context). It works inside a post/page, and inside Query Loop → Post Template items (each item has its own post context). Inside a plain template with no post context there is nothing to read.
 
