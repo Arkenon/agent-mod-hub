@@ -1,0 +1,36 @@
+# AgentMod Hub
+
+> Shared Skills and Agents for the AgentMod WordPress plugin. Each item is a single Markdown file: a short header (Title, Slug, Description, Version, …) ending at a line containing only `===`, followed by the body. For a Skill the body is the skill's instructions; for an Agent it is the agent's full system prompt. AgentMod Pro imports these into its Skill Hub / Agent Hub; AgentMod Free users can use them by letting the agent fetch the files below on demand with web search.
+
+Repository: https://github.com/Arkenon/agent-mod-hub (branch `main`). All links below are raw files, so they always serve the latest version.
+
+## How to use this file (instructions for the agent)
+
+- Before starting a task, check whether one of the Skills below matches it (use each Skill's description). If one does, fetch its raw URL and follow everything after the `===` line as binding instructions for that task. Fetch more than one Skill when a task spans several topics.
+- When the user asks you to act as one of the Agents below, fetch that Agent's file and adopt everything after the `===` line as your system prompt; its `Skills:` header lists the Skill slugs it relies on — fetch those from the Skills list when a task needs them.
+- Fetch a file only when it is relevant; do not load everything up front. Never invent a Skill's content — if a fetch fails, say so and continue with your own knowledge.
+- Abilities named in these files that start with `agent-mod/` are available in AgentMod Free. Abilities that start with `agent-mod-pro/` (for example the Code Snippet abilities `add-snippet`, `update-snippet`, `validate-snippet`) exist only in AgentMod Pro. When they are not available, give the code to the user as a ready-to-paste snippet with clear instructions instead of calling them.
+
+## Skills
+
+- [WordPress Block Markup](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-block-markup.md): Writing or editing the content of any post, page, template, template part or block pattern as serialized WordPress block markup, through abilities.
+- [WordPress Block Patterns](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-patterns.md): Creating, duplicating and updating reusable, responsive block patterns stored in the database.
+- [WordPress Templates & Template Parts](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-templates.md): Assembling modular block templates and template parts, including overriding theme templates by slug.
+- [WordPress Global Styles](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-global-styles.md): Updating global styles (theme.json / saved global style data) safely without overwriting existing structure or presets.
+- [WordPress Block Bindings](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-block-bindings.md): Showing dynamic data (post meta, post date/link, term data, pattern overrides, custom sources) in blocks via `metadata.bindings`.
+- [WordPress Editable HTML Block](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-editable-html-block.md): Hand-writing Custom HTML (`core/html`) block markup that mixes static HTML/CSS/JS with editable inner blocks (WordPress 7.1+).
+- [WordPress Interactivity API](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-interactivity-api.md): Front-end interactivity with `data-wp-*` directives and a store (toggles, tabs, filters, load more) without files or a build step.
+- [WordPress PHP-Only Block Registration](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-php-based-blocks.md): Building a simple, server-rendered Gutenberg block in PHP only with the `autoRegister` support flag.
+- [WordPress Abilities](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/wordpress-abilities.md): Rules for registering AI-callable abilities (tools) with the WordPress Abilities API.
+- [Native Custom Fields Data](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/native-custom-fields.md): Reading and writing Native Custom Fields (NCF) values from code — meta keys, value shapes, CRUD ability pattern, and the `native-custom-fields/post-meta` block binding source.
+
+## Agents
+
+- [WordPress Design Expert](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/agents/wordpress-design-expert.md): Senior Block Theme (FSE) engineer for patterns, templates, template parts, global styles and block markup written through abilities. Skills: wordpress-templates, wordpress-block-bindings, wordpress-patterns, wordpress-global-styles, wordpress-block-markup, wordpress-editable-html-block.
+- [WordPress Coding Expert](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/agents/wordpress-coding-expert.md): Senior WordPress developer writing safe, function-based PHP/CSS/JS snippets (Code Snippets abilities are Pro-only). Skills: wordpress-php-based-blocks, wordpress-abilities, native-custom-fields, wordpress-block-bindings, wordpress-block-markup, wordpress-editable-html-block, wordpress-interactivity-api.
+
+## Optional
+
+- [Hub overview](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/README.md): Repository scope and shared conventions (Slug, Version, `===` separator).
+- [Skill file format](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/skills/README.md): How a Skill `.md` file is structured.
+- [Agent file format](https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/agents/README.md): How an Agent `.md` file is structured.

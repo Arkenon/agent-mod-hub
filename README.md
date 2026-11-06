@@ -7,6 +7,22 @@ required.
 Any site running AgentMod Pro can point its Hub at this repository (or a fork of it) to list what's
 available and import what it doesn't have yet, matched by slug.
 
+## Using the Hub with AgentMod Free
+
+AgentMod Free has no Hub import, but its agents can still use these Skills and Agents on demand.
+[`llms.txt`](llms.txt) indexes every item with its raw GitHub URL. Turn on **Web search** in the
+chat settings and add this to the agent's system prompt:
+
+```
+Skills and agents for this site are indexed at
+https://raw.githubusercontent.com/Arkenon/agent-mod-hub/main/llms.txt
+Fetch that file at the start of a WordPress task, pick the skills whose descriptions match the
+task, fetch them and follow their instructions.
+```
+
+Code Snippet abilities (`agent-mod-pro/*`) referenced by some skills exist only in AgentMod Pro;
+without them the agent hands the code to the user instead.
+
 ## Scope
 
 This repository currently covers two item types:
@@ -45,5 +61,7 @@ These apply to every item type in this repository, regardless of folder:
 2. Pick `Slug:` carefully for a new item — it's permanent once sites start importing it.
 3. For an edit to an existing item, bump `Version:` (e.g. `1.0.0` → `1.0.1` for a small fix, `1.1.0`
    for a bigger content change) — otherwise sites that already imported it won't see the update.
-4. Commit and push. Sites check this repository live (with a short cache), so no release or
+4. Add or update the item's line in [`llms.txt`](llms.txt) (raw URL + one-line description), so
+   AgentMod Free users can find it too.
+5. Commit and push. Sites check this repository live (with a short cache), so no release or
    versioning step is needed on this side.
